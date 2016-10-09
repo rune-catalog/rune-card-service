@@ -1,0 +1,15 @@
+{
+  "name": "rune-cards-service",
+  "version": "0.0.1",
+  "description": "MTG card microservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sam Noedel <sam.noedel@gmail.com>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "mongodb": "^2.2.10",
+    "restify": "^4.1.1"
+  }
+}
