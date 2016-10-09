@@ -1,14 +1,10 @@
 'use strict'
 
 const restify = require('restify'),
-  MongoClient = require('mongodb').MongoClient;
+  MongoClient = require('mongodb').MongoClient,
+  R = require('ramda')
 
 let server = restify.createServer()
-
-server.get('/', (req, res, next) => {
-  res.send('Hello world')
-  next()
-})
 
 server.get('/cards', (req, res, next) => {
   let db
@@ -17,10 +13,14 @@ server.get('/cards', (req, res, next) => {
     .then(database => {
       db = database
       let collection = db.collection('cards')
-      return collection.find({ }, { name: true, colors: true, _id: false}).toArray()
+      return collection.find({ }, { name: 1, colors: 1, _id: 0 }).toArray()
     })
     .then(docs => {
-      res.json(docs)
+      let cards = R.map(doc => ({
+        name: doc.name,
+        colors: doc.colors && R.map(c => c[0].toLowerCase(), doc.colors).join('') || ''
+      }), docs)
+      res.json(cards)
     })
     .catch(err => console.error(err))
     .then(() => {
