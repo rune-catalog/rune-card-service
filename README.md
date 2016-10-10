@@ -1,3 +1,5 @@
 # rune-cards-service
 
-Dev mode (restarts on changes): `npm start`
+- Prod mode: `npm start`
+- Dev mode (restarts on changes): `npm run debug`
+- Docker build: `docker-compose up`

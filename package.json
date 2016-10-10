@@ -4,7 +4,8 @@
   "description": "MTG card microservice",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
+    "debug": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "rune-catalog/rune-cards-service",
