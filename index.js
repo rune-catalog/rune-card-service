@@ -9,7 +9,7 @@ let server = restify.createServer()
 server.get('/cards', (req, res, next) => {
   let db
 
-  MongoClient.connect('mongodb://mongo/rune')
+  MongoClient.connect('mongodb://card-db/rune')
     .then(database => {
       db = database
       let collection = db.collection('cards')
@@ -32,7 +32,7 @@ server.get('/cards', (req, res, next) => {
 server.get('/set/:code', (req, res, next) => {
   let db
 
-  MongoClient.connect('mongodb://mongo/rune')
+  MongoClient.connect('mongodb://card-db/rune')
     .then(database => {
       db = database
       let collection = db.collection('sets')
