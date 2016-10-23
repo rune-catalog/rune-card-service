@@ -18,7 +18,7 @@ server.get('/cards', (req, res, next) => {
     .then(docs => {
       let cards = R.map(doc => ({
         name: doc.name,
-        colors: doc.colors && R.map(c => c[0].toLowerCase(), doc.colors).join('') || ''
+        colors: serializeColors(doc.colors)
       }), docs)
       res.json(cards)
     })
@@ -50,7 +50,13 @@ server.get('/set/:code', (req, res, next) => {
     })
     .then(set => {
       if (!set) res.send(404)
-      else res.json(set)
+      else {
+        set = {
+          name: set.name,
+          cards: R.map(card => ({ name: card.name, colors: serializeColors(card.colors) }), set.cards)
+        }
+        res.json(set)
+      }
     })
     .catch(err => next(err))
     .then(() => {
@@ -58,6 +64,26 @@ server.get('/set/:code', (req, res, next) => {
       next()
     })
 })
+
+function serializeColors(colors) {
+  if (!colors) {
+    return '';
+  }
+  return R.map(c => {
+    switch (c) {
+      case 'White':
+        return 'w'
+      case 'Blue':
+        return 'u'
+      case 'Black':
+        return 'b'
+      case 'Red':
+        return 'r'
+      case 'Green':
+        return 'g'
+    }
+  }, colors).join('')
+}
 
 server.listen(8080, () => {
   console.log(`${server.name} listening at ${server.url}`)
