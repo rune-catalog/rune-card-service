@@ -30,6 +30,37 @@ server.get('/cards', (req, res, next) => {
     })
 })
 
+server.get('/card/:name', (req, res, next) => {
+  let db;
+
+  MongoClient.connect('mongodb://card-db/rune')
+    .then(database => {
+      db = database;
+      let collection = db.collection('cards');
+      return collection.findOne(
+        { name: req.params.name },
+        {
+          _id: 0,
+          name: 1,
+          manaCost: 1,
+          colors: 1,
+          type: 1,
+          text: 1
+        }
+      );
+    })
+    .then(card => {
+      if (!card) res.send(404);
+      else {
+        card.colors = serializeColors(card.colors);
+        res.json(card);
+      }
+      next();
+    })
+    .catch(err => next(err))
+    .then(() => db.close());
+});
+
 server.get('/set/:code', (req, res, next) => {
   let db
 
