@@ -5,6 +5,7 @@ const restify = require('restify'),
   R = require('ramda')
 
 let server = restify.createServer()
+server.use(restify.CORS())
 
 server.get('/cards', (req, res, next) => {
   let db
