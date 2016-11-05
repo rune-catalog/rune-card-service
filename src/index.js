@@ -2,11 +2,12 @@
 
 const restify = require('restify'),
   MongoClient = require('mongodb').MongoClient,
-  R = require('ramda')
+  R = require('ramda');
 
-let server = restify.createServer()
-server.use(restify.CORS())
+let server = restify.createServer();
+server.use(restify.CORS());
 
+server.get('/sets', require('./handlers/set-browse'));
 server.get('/cards', (req, res, next) => {
   let db
 
