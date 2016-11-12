@@ -13,4 +13,4 @@ COPY [ "package.json", "/app" ]
 COPY [ "src", "/app/src/" ]
 RUN [ "npm", "install" ]
 
-CMD [ "npm", "start" ]
+ENTRYPOINT [ "npm", "start" ]
