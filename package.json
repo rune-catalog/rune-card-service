@@ -12,6 +12,8 @@
   "author": "Sam Noedel <sam.noedel@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
+    "bunyan": "^1.8.5",
+    "bunyan-logstash": "^0.3.4",
     "mongodb": "^2.2.10",
     "ramda": "^0.22.1",
     "restify": "^4.1.1"

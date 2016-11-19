@@ -7,6 +7,7 @@ const restify = require('restify'),
 let server = restify.createServer();
 server.use(restify.CORS());
 
+server.get('/status', require('./handlers/status'));
 server.get('/sets', require('./handlers/set-browse'));
 server.get('/cards', (req, res, next) => {
   let db;
@@ -118,6 +119,6 @@ function serializeColors(colors) {
   }, colors).join('');
 }
 
-server.listen(80, () => {
+server.listen(8080, () => {
   console.log(`${server.name} listening at ${server.url}`);
 });
