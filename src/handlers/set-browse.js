@@ -1,15 +1,15 @@
 'use strict';
 
-const MongoClient = require('mongodb').MongoClient;
+const connectionFactory = require('../connection-factory'),
+  restify = require('restify');
 
 module.exports = function setBrowseHandler(req, res, next) {
   let db;
 
-  MongoClient.connect('mongodb://card-db/rune')
+  connectionFactory.create()
     .then(database => {
       db = database;
-      let collection = db.collection('sets');
-      return collection.find(
+      db.collection('sets').find(
         { },
         {
           name: 1,
@@ -18,6 +18,9 @@ module.exports = function setBrowseHandler(req, res, next) {
         }).toArray();
     })
     .then(docs => {
+      if (!docs) {
+        throw new resitfy.NotFoundError();
+      }
       res.json(docs);
       next();
     })

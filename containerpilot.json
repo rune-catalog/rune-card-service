@@ -3,7 +3,7 @@
   "stopTimeout": 5,
   "services": [
     {
-      "name": "Rune Cards",
+      "name": "rune-cards",
       "port": 8080,
       "health": [
         "/usr/bin/curl",
@@ -18,5 +18,12 @@
       "ttl": 30
     }
   ],
-  "backends": [ ]
+  "backends": [
+    {
+      "name": "cards-replicaset",
+      "poll": 30,
+      "onChange": "pkill --signal SIGHUP node",
+      "timeout": "30s"
+    }
+  ]
 }
