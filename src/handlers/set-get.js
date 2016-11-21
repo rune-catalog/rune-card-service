@@ -1,6 +1,6 @@
 'use strict';
 
-const connectionFactory = require('connection-factory'),
+const connectionFactory = require('../connection-factory'),
   restify = require('restify'),
   R = require('ramda');
 
@@ -27,7 +27,10 @@ module.exports = function setGetHandler(req, res, next) {
       else {
         set = {
           name: set.name,
-          cards: R.map(card => ({ name: card.name, colors: serializeColors(card.colors) }), set.cards)
+          cards: R.map(card => ({
+            name: card.name,
+            colors: serializeColors(card.colors)
+          }), set.cards)
         };
         res.json(set);
       }

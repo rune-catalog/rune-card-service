@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "debug": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": "rune-catalog/rune-cards-service",
   "author": "Sam Noedel <sam.noedel@gmail.com>",
@@ -20,6 +20,7 @@
     "restify": "^4.1.1"
   },
   "devDependencies": {
+    "jasmine": "^2.5.2",
     "nodemon": "^1.11.0"
   }
 }

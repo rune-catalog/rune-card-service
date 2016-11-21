@@ -1,5 +1,7 @@
 'use strict';
 
+const R = require('ramda');
+
 module.exports.serializeColors = function serializeColors(colors) {
   if (!colors) {
     return '';
