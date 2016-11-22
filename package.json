@@ -6,21 +6,26 @@
   "scripts": {
     "start": "node src/index.js",
     "debug": "nodemon src/index.js",
-    "test": "jasmine"
+    "test": "concurrently 'npm run mb' 'npm run jasmine'",
+    "mb": "mb",
+    "jasmine": "jasmine"
   },
   "repository": "rune-catalog/rune-cards-service",
   "author": "Sam Noedel <sam.noedel@gmail.com>",
   "license": "GPL-3.0",
   "dependencies": {
     "bunyan": "^1.8.5",
-    "bunyan-logstash": "^0.3.4",
     "mongodb": "^2.2.10",
+    "mongoose": "^4.6.8",
     "piloted": "^1.1.0",
     "ramda": "^0.22.1",
     "restify": "^4.1.1"
   },
   "devDependencies": {
+    "concurrently": "^3.1.0",
     "jasmine": "^2.5.2",
-    "nodemon": "^1.11.0"
+    "mountebank": "^1.6.0",
+    "nodemon": "^1.11.0",
+    "supertest": "^2.0.1"
   }
 }

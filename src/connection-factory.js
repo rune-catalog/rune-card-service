@@ -1,10 +1,15 @@
 'use strict';
 
-const MongoClient = require('mongodb').MongoClient,
+const mongoose = require('mongoose'),
   Piloted = require('piloted');
 
 module.exports.create = function dbConnectionFactory() {
-  let server = Piloted('cards-replicaset');
-  let uri = `mongodb://${server.address}:${server.port}/rune`;
-  return MongoClient.create(uri);
+  let uri = buildConnectionUri();
+  mongoose.Promise = Promise;
+  return mongoose.connect(uri);
 };
+
+function buildConnectionUri() {
+  let server = Piloted('cards-replicaset');
+  return `mongodb://${server.address}:${server.port}/rune`;
+}
