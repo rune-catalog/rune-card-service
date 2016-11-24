@@ -1,10 +1,18 @@
 'use strict';
 
 const request = require('supertest'),
-  api = require('../../src/index');
+  api = require('../../src/index'),
+  mb = require('../helpers/consul-helper');
 
 describe('GET /cards', () => {
-  let agent = request(api);
+  let agent;
+
+  beforeAll(done => {
+    mb.stubConsul()
+      .then(() => agent = request(api))
+      .then(done)
+      .catch(done.fail);
+  });
 
   it('should respond with JSON', done => {
     agent

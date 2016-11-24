@@ -1,30 +1,18 @@
 'use strict'
 
-const restify    = require('restify'),
+const restify       = require('restify'),
+  appServer         = require('./server'),
   connectionFactory = require('./connection-factory'),
-  Piloted        = require('piloted'),
-  ContainerPilot = require('../containerpilot.json');
+  autopilot         = require('./autopilot').autopilot,
+  ContainerPilot    = require('../containerpilot.json'),
+  server            = restify.createServer();
 
-let server = restify.createServer();
-
-Piloted.config(ContainerPilot, err => server.log.error(err));
-
-connectionFactory.create()
-  .then(() => server.log.info('connected to DB successfully'))
-  .catch(err => server.log.error(err));
-
-server.get('/status',     require('./handlers/status'));
-server.get('/cards',      require('./handlers/card-browse'));
-server.get('/card/:name', require('./handlers/card-get'));
-server.get('/sets',       require('./handlers/set-browse'));
-server.get('/set/:code',  require('./handlers/set-get'));
-
-server.on('after', (req, res, route, err) => {
-  err && server.log.error(err);
-});
-
-server.listen(8080, () => {
-  server.log.info(`${server.name} listening at ${server.url}`);
-});
+autopilot(ContainerPilot)
+  .then(() => server)
+  .then(connectionFactory.create)
+  .then(appServer.initHandlers)
+  .then(appServer.initEvents)
+  .then(appServer.startServer)
+  .catch(server.log.eror);
 
 module.exports = server;

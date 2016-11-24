@@ -6,9 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "debug": "nodemon src/index.js",
-    "test": "concurrently 'npm run mb' 'npm run jasmine'",
-    "mb": "mb",
-    "jasmine": "jasmine"
+    "test": "jasmine"
   },
   "repository": "rune-catalog/rune-cards-service",
   "author": "Sam Noedel <sam.noedel@gmail.com>",
