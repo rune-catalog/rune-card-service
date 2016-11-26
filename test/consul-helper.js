@@ -4,7 +4,7 @@ const Wreck = require('wreck'),
   MB_PORT = 2525,
   PORT = 8500;
 
-module.exports.stubConsul = function stubConsul() {
+before(done => {
   let stub = {
     port: PORT,
     protocol: 'http',
@@ -34,10 +34,13 @@ module.exports.stubConsul = function stubConsul() {
 
   let opts = { payload: stub };
 
-  return new Promise((resolve, reject) => {
-    Wreck.post(`http://127.0.0.1:${MB_PORT}/imposters`, opts, (err, res) => {
-      if (err) return reject(err);
-      resolve();
-    });
+  Wreck.post(`http://127.0.0.1:${MB_PORT}/imposters`, opts, (err, res) => {
+    done(err);
   });
-}
+});
+
+after(done => {
+  Wreck.delete(`http://127.0.0.1:${MB_PORT}/imposters`, (err, res) => {
+    done(err);
+  });
+});
