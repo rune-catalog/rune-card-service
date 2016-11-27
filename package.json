@@ -1,6 +1,6 @@
 {
   "name": "rune-cards-service",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "MTG card microservice",
   "main": "src/index.js",
   "scripts": {
