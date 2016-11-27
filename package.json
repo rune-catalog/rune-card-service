@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/main.js",
     "test": "mocha",
-    "pretest": "lint",
+    "pretest": "npm run lint",
     "lint": "eslint src/ test/"
   },
   "repository": "rune-catalog/rune-cards-service",
@@ -16,15 +16,14 @@
     "bunyan": "^1.8.5",
     "mongodb": "^2.2.10",
     "mongoose": "^4.6.8",
-    "piloted": "^1.1.0",
-    "ramda": "^0.22.1",
+    "piloted": "delta62/node-piloted",
     "restify": "^4.1.1"
   },
   "devDependencies": {
     "code": "^4.0.0",
     "eslint": "^3.11.0",
+    "mb-promise": "^0.1.0",
     "mocha": "^3.2.0",
-    "mountebank": "^1.6.0",
     "nodemon": "^1.11.0",
     "supertest": "^2.0.1"
   }

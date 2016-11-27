@@ -1,13 +1,11 @@
 'use strict';
 
-const R = require('ramda');
-
 module.exports.serializeColors = function serializeColors(colors) {
   if (!colors) {
     return '';
   }
 
-  return R.map(c => {
+  return colors.map(c => {
     switch (c) {
       case 'White':
         return 'w';
