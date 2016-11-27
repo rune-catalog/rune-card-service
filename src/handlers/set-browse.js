@@ -1,29 +1,12 @@
 'use strict';
 
-const connectionFactory = require('../connection-factory'),
-  restify = require('restify');
+const restify = require('restify'),
+  Set = require('../model/set');
 
 module.exports = function setBrowseHandler(req, res, next) {
-  let db;
-
-  connectionFactory.create()
-    .then(database => {
-      db = database;
-      db.collection('sets').find(
-        { },
-        {
-          name: 1,
-          code: 1,
-          _id: 0
-        }).toArray();
-    })
-    .then(docs => {
-      if (!docs) {
-        throw new resitfy.NotFoundError();
-      }
-      res.json(docs);
-      next();
-    })
-    .catch(err => next(err))
-    .then(() => db.close());
+  Set.find({ }, (err, docs) => {
+    if (err) return next(err);
+    res.json(docs);
+    next();
+  });
 };

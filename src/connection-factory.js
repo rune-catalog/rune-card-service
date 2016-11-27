@@ -3,10 +3,16 @@
 const mongoose = require('mongoose'),
   Piloted = require('piloted');
 
+let connection;
+
 module.exports.create = function dbConnectionFactory() {
+  if (connection) {
+    return Promise.resolve(connection);
+  }
+
   let uri = buildConnectionUri();
   mongoose.Promise = Promise;
-  return mongoose.connect(uri);
+  return connection = mongoose.connect(uri);
 };
 
 function buildConnectionUri() {

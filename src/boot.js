@@ -6,7 +6,7 @@ const restify       = require('restify'),
   autopilot         = require('./autopilot').autopilot,
   ContainerPilot    = require('../containerpilot.json');
 
-module.exports.boot = function main() {
+module.exports.boot = function boot() {
   const server = restify.createServer();
 
   return autopilot(ContainerPilot)
@@ -14,6 +14,5 @@ module.exports.boot = function main() {
     .then(() => server)
     .then(appServer.initHandlers)
     .then(appServer.initEvents)
-    .then(appServer.startServer)
     .catch(err => server.log.error(err));
 };
