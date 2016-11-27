@@ -2,6 +2,7 @@
 
 const api = require('../src/boot'),
   request = require('supertest'),
+  { describe, before, it } = require('mocha'),
   Card    = require('../src/model/card');
 
 describe('GET /card/:name', () => {
@@ -16,10 +17,10 @@ describe('GET /card/:name', () => {
     })
       .then(() => Card.remove({ }))
       .then(() => Card.create([
-          {
-            name: 'dude',
-            colors: [ 'Blue' ]
-          }
+        {
+          name: 'dude',
+          colors: [ 'Blue' ]
+        }
       ]));
   });
 

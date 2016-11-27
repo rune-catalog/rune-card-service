@@ -1,7 +1,9 @@
 'use strict';
 
 const util = require('../src/util'),
-  expect = require('code').expect;
+  describe = require('mocha').describe,
+  it       = require('mocha').it,
+  expect   = require('code').expect;
 
 describe('util', () => {
   describe('#serializeColors', () => {

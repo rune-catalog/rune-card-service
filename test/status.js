@@ -1,7 +1,8 @@
 'use strict';
 
-const api = require('../src/boot'),
-  request = require('supertest');
+const api  = require('../src/boot'),
+  request  = require('supertest'),
+  { describe, it, before } = require('mocha');
 
 describe('GET /status', () => {
   let agent;

@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
   toJSON: { getters: true, transform: transformCardDoc }
 });
 
-function transformCardDoc(doc, ret, opts) {
+function transformCardDoc(doc, ret) {
   delete ret._id;
   delete ret.__v;
   return ret;

@@ -3,6 +3,7 @@
 const api = require('../src/boot'),
   request = require('supertest'),
   expect  = require('code').expect,
+  { describe, it, before } = require('mocha'),
   Card    = require('../src/model/card');
 
 describe('GET /cards', () => {
@@ -61,7 +62,7 @@ describe('GET /cards', () => {
       .get('/cards')
       .expect(res => expect(res.body[0].__v).not.to.exist())
       .expect(200, done);
-  })
+  });
 
   it('should include all cards from DB', done => {
     agent

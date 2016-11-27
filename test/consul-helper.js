@@ -1,6 +1,7 @@
 'use strict';
 
 const Wreck = require('wreck'),
+  { before, after } = require('mocha'),
   MB_PORT = 2525,
   PORT = 8500;
 
@@ -34,13 +35,13 @@ before(done => {
 
   let opts = { payload: stub };
 
-  Wreck.post(`http://127.0.0.1:${MB_PORT}/imposters`, opts, (err, res) => {
+  Wreck.post(`http://127.0.0.1:${MB_PORT}/imposters`, opts, err => {
     done(err);
   });
 });
 
 after(done => {
-  Wreck.delete(`http://127.0.0.1:${MB_PORT}/imposters`, (err, res) => {
+  Wreck.delete(`http://127.0.0.1:${MB_PORT}/imposters`, err => {
     done(err);
   });
 });

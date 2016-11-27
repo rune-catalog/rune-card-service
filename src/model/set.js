@@ -12,7 +12,7 @@ let schema = new mongoose.Schema({
   toJSON: { getters: true, transform: transformCardDoc }
 });
 
-function transformCardDoc(doc, ret, opts) {
+function transformCardDoc(doc, ret) {
   ret.cards = ret.cards.map(card => ({
     name: card.name,
     colors: util.serializeColors(card.colors)

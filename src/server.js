@@ -16,7 +16,7 @@ module.exports.initHandlers = function initHandlers(server) {
   server.get('/set/:code',  require('./handlers/set-get'));
 
   return server;
-}
+};
 
 module.exports.startServer = function startServer(server) {
   server.listen(8080, () => {

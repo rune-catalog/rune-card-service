@@ -1,9 +1,7 @@
 'use strict';
 
-const util          = require('../util'),
-  connectionFactory = require('../connection-factory'),
-  restify           = require('restify'),
-  Card              = require('../model/card');
+const Card = require('../model/card'),
+  restify  = require('restify');
 
 module.exports = function cardGetHandler(req, res, next) {
   Card.findOne({ name: req.params.name }, (err, card) => {

@@ -10,15 +10,15 @@ module.exports.serializeColors = function serializeColors(colors) {
   return R.map(c => {
     switch (c) {
       case 'White':
-        return 'w'
+        return 'w';
       case 'Blue':
-        return 'u'
+        return 'u';
       case 'Black':
-        return 'b'
+        return 'b';
       case 'Red':
-        return 'r'
+        return 'r';
       case 'Green':
-        return 'g'
+        return 'g';
     }
   }, colors).join('');
 };

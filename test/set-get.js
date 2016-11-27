@@ -1,8 +1,11 @@
 'use strict';
 
-const api = require('../src/boot'),
-  request = require('supertest'),
-  Set = require('../src/model/set');
+const api  = require('../src/boot'),
+  request  = require('supertest'),
+  Set      = require('../src/model/set'),
+  describe = require('mocha').describe,
+  it       = require('mocha').it,
+  before   = require('mocha').before;
 
 describe('GET /set/:code', () => {
   let agent;
@@ -27,7 +30,7 @@ describe('GET /set/:code', () => {
               }
             ]
           }
-        ])
+        ]);
       });
   });
 
