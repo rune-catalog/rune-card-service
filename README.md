@@ -2,7 +2,7 @@
 
 # rune-cards-service
 
-A NodeJS providing an HTTP API for Magic cards.
+A NodeJS microservice providing an HTTP API for Magic cards.
 
 ## Running
 
