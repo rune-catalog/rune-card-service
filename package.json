@@ -15,7 +15,7 @@
   "dependencies": {
     "bunyan": "^1.8.5",
     "mongoose": "^4.6.8",
-    "piloted": "^1.1.0",
+    "piloted": "joyent/node-piloted",
     "restify": "^4.1.1"
   },
   "devDependencies": {
